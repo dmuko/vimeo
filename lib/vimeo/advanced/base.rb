@@ -102,7 +102,6 @@ module Vimeo
         validate_response! response
         response
       end
-      end
 private
 
       def make_request(options, authorized)

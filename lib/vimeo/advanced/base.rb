@@ -96,7 +96,7 @@ module Vimeo
 
 
       def get_custom_request(method, endpoint)
-        raw_response = @oauth_consumer.request(method, endpoint, nil, {}, options).body
+        raw_response = @oauth_consumer.request(method, endpoint, nil, {}).body
 
         response = JSON.parse(raw_response)
         validate_response! response

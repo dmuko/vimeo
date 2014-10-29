@@ -94,6 +94,15 @@ module Vimeo
       create_api_method :check_access_token,
                         "vimeo.oauth.checkAccessToken"
 
+
+      def get_custom_request(method, endpoint)
+        raw_response = @oauth_consumer.request(method, endpoint, nil, {}, options).body
+
+        response = JSON.parse(raw_response)
+        validate_response! response
+        response
+      end
+      end
 private
 
       def make_request(options, authorized)
@@ -107,7 +116,7 @@ private
         validate_response! response
         response
       end
-
+    
       # Raises an exception if the response does contain a +stat+ different from "ok"
       def validate_response!(response)
         raise "empty response" unless response
